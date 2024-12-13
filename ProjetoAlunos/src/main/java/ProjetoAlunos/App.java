@@ -32,7 +32,7 @@ public class App {
                     System.out.println("Encerrando o programa.");
                     break;
                 default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println("Opcao invalida. Tente novamente.");
             }
         }
 
@@ -45,17 +45,17 @@ public class App {
     private static void exibirMenu() {
         System.out.println("\n--- Menu ---");
         System.out.println("1. Cadastrar Aluno");
-        System.out.println("2. Exibir Informações de Alunos (Tabela)");
-        System.out.println("3. Calcular Média da Turma");
+        System.out.println("2. Exibir Informacoes de Alunos (Tabela)");
+        System.out.println("3. Calcular Media da Turma");
         System.out.println("4. Sair");
-        System.out.print("Escolha uma opção: ");
+        System.out.print("Escolha uma opcao: ");
     }
 
     /**
-     * Lê a opção do menu de forma segura, evitando exceções por entradas inválidas.
+     * Le a opcao do menu de forma segura, evitando excecoes por entradas invalidas.
      *
      * @param scanner Scanner para entrada de dados.
-     * @return A opção escolhida pelo usuário.
+     * @return A opcao escolhida pelo usuario.
      */
     private static int lerOpcao(Scanner scanner) {
         int opcao = -1;
@@ -65,15 +65,15 @@ public class App {
                 scanner.nextLine(); // Consumir quebra de linha
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("Por favor, insira um número válido.");
-                scanner.nextLine(); // Consumir entrada inválida
+                System.out.println("Por favor, insira um numero valido.");
+                scanner.nextLine(); // Consumir entrada invalida
             }
         }
         return opcao;
     }
 
     /**
-     * Cadastra múltiplos alunos com a opção de continuar ou voltar ao menu.
+     * Cadastra multiplos alunos com a opcao de continuar ou voltar ao menu.
      *
      * @param scanner Scanner para entrada de dados.
      * @param alunos Lista de alunos cadastrados.
@@ -96,7 +96,7 @@ public class App {
     private static void cadastrarAluno(Scanner scanner, ArrayList<Aluno> alunos) {
         System.out.print("Digite o nome do aluno: ");
         String nome = scanner.nextLine();
-        System.out.print("Digite a matrícula do aluno: ");
+        System.out.print("Digite a matricula do aluno: ");
         String matricula = scanner.nextLine();
         System.out.print("Digite a turma do aluno: ");
         String turma = scanner.nextLine();
@@ -115,12 +115,12 @@ public class App {
                         break;
                     }
                 } catch (InputMismatchException e) {
-                    System.out.println("Por favor, insira um número válido.");
-                    scanner.nextLine(); // Consumir entrada inválida
+                    System.out.println("Por favor, insira um numero valido.");
+                    scanner.nextLine(); // Consumir entrada invalida
                 }
             }
         }
-        scanner.nextLine(); // Consumir quebra de linha após as notas
+        scanner.nextLine(); // Consumir quebra de linha apos as notas
 
         aluno.calcularMedia(notas);
         alunos.add(aluno);
@@ -128,7 +128,7 @@ public class App {
     }
 
     /**
-     * Exibe uma tabela com as informações dos alunos cadastrados.
+     * Exibe uma tabela com as informacoes dos alunos cadastrados.
      *
      * @param alunos Lista de alunos cadastrados.
      */
@@ -137,7 +137,7 @@ public class App {
             System.out.println("Nenhum aluno cadastrado.");
         } else {
             System.out.println("\n----------------------------------------------");
-            System.out.println("| Nome          | Matrícula  | Média | Status |");
+            System.out.println("| Nome          | Matricula  | Media | Status |");
             System.out.println("----------------------------------------------");
             for (Aluno a : alunos) {
                 String status = a.verificarAprovacao() ? "Aprovado" : "Reprovado";
@@ -148,20 +148,20 @@ public class App {
     }
 
     /**
-     * Calcula e exibe a média da turma.
+     * Calcula e exibe a media da turma.
      *
      * @param alunos Lista de alunos cadastrados.
      */
     private static void calcularMediaDaTurma(ArrayList<Aluno> alunos) {
         if (alunos.isEmpty()) {
-            System.out.println("Nenhum aluno cadastrado para calcular a média da turma.");
+            System.out.println("Nenhum aluno cadastrado para calcular a media da turma.");
         } else {
             double somaMedias = 0;
             for (Aluno a : alunos) {
                 somaMedias += a.getMedia();
             }
             double mediaTurma = somaMedias / alunos.size();
-            System.out.printf("Média da turma: %.2f%n", mediaTurma);
+            System.out.printf("Media da turma: %.2f%n", mediaTurma);
         }
     }
 }

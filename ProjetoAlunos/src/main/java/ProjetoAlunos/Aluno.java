@@ -5,8 +5,8 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 /**
- * Classe que representa um aluno, contendo suas informações pessoais e métodos
- * para cálculo de médias e verificação de aprovação.
+ * Classe que representa um aluno, contendo suas informacoes pessoais e metodos
+ * para calculo de medias e verificacao de aprovacao.
  */
 public class Aluno {
 
@@ -19,7 +19,7 @@ public class Aluno {
      * Construtor da classe Aluno.
      *
      * @param nome Nome do aluno.
-     * @param matricula Matrícula do aluno.
+     * @param matricula Matricula do aluno.
      * @param turma Turma do aluno.
      */
     public Aluno(String nome, String matricula, String turma) {
@@ -29,7 +29,7 @@ public class Aluno {
     }
 
     /**
-     * Obtém o nome do aluno.
+     * Obtem o nome do aluno.
      *
      * @return O nome do aluno.
      */
@@ -38,16 +38,16 @@ public class Aluno {
     }
 
     /**
-     * Obtém a matrícula do aluno.
+     * Obtem a matricula do aluno.
      *
-     * @return A matrícula do aluno.
+     * @return A matricula do aluno.
      */
     public String getMatricula() {
         return matricula;
     }
 
     /**
-     * Obtém a turma do aluno.
+     * Obtem a turma do aluno.
      *
      * @return A turma do aluno.
      */
@@ -56,10 +56,10 @@ public class Aluno {
     }
 
     /**
-     * Calcula a média aritmética de quatro notas.
+     * Calcula a media aritmetica de quatro notas.
      *
      * @param notas Array com quatro notas do aluno (entre 0 e 10).
-     * @return A média aritmética das quatro notas.
+     * @return A media aritmetica das quatro notas.
      * @throws IllegalArgumentException Se alguma das notas estiver fora do intervalo 0 a 10.
      */
     public double calcularMedia(double[] notas) {
@@ -79,18 +79,18 @@ public class Aluno {
     }
 
     /**
-     * Verifica se o aluno foi aprovado com base na média mínima de 6.0.
+     * Verifica se o aluno foi aprovado com base na media minima de 6.0.
      *
-     * @return {@code true} se o aluno foi aprovado, {@code false} caso contrário.
+     * @return {@code true} se o aluno foi aprovado, {@code false} caso contrario.
      */
     public boolean verificarAprovacao() {
         return this.media >= 6.0;
     }
 
     /**
-     * Obtém a média do aluno.
+     * Obtem a media do aluno.
      *
-     * @return A média calculada do aluno.
+     * @return A media calculada do aluno.
      */
     public double getMedia() {
         return this.media;
