@@ -2,6 +2,7 @@ package ProjetoAlunos;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 /**
  * Classe principal para gerenciar o sistema de alunos.
