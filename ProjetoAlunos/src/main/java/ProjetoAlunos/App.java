@@ -15,15 +15,11 @@ public class App {
         boolean continuar = true;
         while (continuar) {
             exibirMenu();
-            int opcao = scanner.nextInt();
-            scanner.nextLine(); // Consumir a quebra de linha
+            int opcao = lerOpcao(scanner);
 
             switch (opcao) {
                 case 1:
-                    do {
-                        cadastrarAluno(scanner, alunos);
-                        System.out.print("Deseja cadastrar mais um aluno? (S/N): ");
-                    } while (scanner.nextLine().equalsIgnoreCase("S"));
+                    cadastrarAlunos(scanner, alunos);
                     break;
                 case 2:
                     exibirTabelaDeAlunos(alunos);
@@ -56,6 +52,42 @@ public class App {
     }
 
     /**
+     * Lê a opção do menu de forma segura, evitando exceções por entradas inválidas.
+     *
+     * @param scanner Scanner para entrada de dados.
+     * @return A opção escolhida pelo usuário.
+     */
+    private static int lerOpcao(Scanner scanner) {
+        int opcao = -1;
+        while (true) {
+            try {
+                opcao = scanner.nextInt();
+                scanner.nextLine(); // Consumir quebra de linha
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Por favor, insira um número válido.");
+                scanner.nextLine(); // Consumir entrada inválida
+            }
+        }
+        return opcao;
+    }
+
+    /**
+     * Cadastra múltiplos alunos com a opção de continuar ou voltar ao menu.
+     *
+     * @param scanner Scanner para entrada de dados.
+     * @param alunos Lista de alunos cadastrados.
+     */
+    private static void cadastrarAlunos(Scanner scanner, ArrayList<Aluno> alunos) {
+        boolean continuarCadastro;
+        do {
+            cadastrarAluno(scanner, alunos);
+            System.out.print("Deseja cadastrar mais um aluno? (S/N): ");
+            continuarCadastro = scanner.nextLine().equalsIgnoreCase("S");
+        } while (continuarCadastro);
+    }
+
+    /**
      * Cadastra um novo aluno no sistema.
      *
      * @param scanner Scanner para entrada de dados.
@@ -73,9 +105,22 @@ public class App {
 
         double[] notas = new double[4];
         for (int i = 0; i < 4; i++) {
-            System.out.print("Digite a nota " + (i + 1) + ": ");
-            notas[i] = scanner.nextDouble();
+            while (true) {
+                try {
+                    System.out.print("Digite a nota " + (i + 1) + ": ");
+                    notas[i] = scanner.nextDouble();
+                    if (notas[i] < 0 || notas[i] > 10) {
+                        System.out.println("A nota deve estar entre 0 e 10.");
+                    } else {
+                        break;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Por favor, insira um número válido.");
+                    scanner.nextLine(); // Consumir entrada inválida
+                }
+            }
         }
+        scanner.nextLine(); // Consumir quebra de linha após as notas
 
         aluno.calcularMedia(notas);
         alunos.add(aluno);
